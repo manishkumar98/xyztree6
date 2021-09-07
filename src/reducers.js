@@ -223,17 +223,20 @@ function reducers(state = data, action) {
               children2 = children1.forEach(function (o) {
                 o.children1 =
                   o.children1 &&
-                  o.children1.filter((id) => id.id !== action.id.id);
+                  o.children1.filter((id) => id.id.id !== action.id.id);
               });
             }
             // if(children2)
+
             children1 = children2;
+            console.log("yui", children1);
             if (children1 && children1.length > 0)
               nodey.children = [...children1];
             else nodey.children = [];
             // break;
           } else if (
             nodey.children &&
+            nodey.children[u] !== undefined &&
             nodey.children[u].children &&
             nodey.children[u].children.length > 0
           ) {
