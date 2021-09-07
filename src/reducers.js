@@ -210,20 +210,30 @@ function reducers(state = data, action) {
         var f = 0;
         for (var u = 0; u < len1; u++) {
           // console.log("asd", nodey.children[u].id + " " + action.id.id);
-          if (nodey.children && nodey.children[u].id === action.id.id) {
+          if (
+            nodey.children &&
+            nodey.children[u] &&
+            nodey.children[u].id === action.id.id
+          ) {
             f = 1;
             console.log("here", nodey);
-            var children1 = nodey.children;
+            var children1 = [...nodey.children];
+            var children2;
             if (f === 1 && children1) {
-              children1 = children1.forEach(function (o) {
+              children2 = children1.forEach(function (o) {
                 o.children1 =
                   o.children1 &&
                   o.children1.filter((id) => id.id !== action.id.id);
               });
             }
-            nodey.children = children1;
+            // if(children2)
+            children1 = children2;
+            if (children1 && children1.length > 0)
+              nodey.children = [...children1];
+            else nodey.children = [];
             // break;
           } else if (
+            nodey.children &&
             nodey.children[u].children &&
             nodey.children[u].children.length > 0
           ) {
