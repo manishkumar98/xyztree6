@@ -220,11 +220,33 @@ function reducers(state = data, action) {
             var children1 = [...nodey.children];
             var children2;
             if (f === 1 && children1) {
-              children2 = children1.forEach(function (o) {
-                o.children1 =
-                  o.children1 &&
-                  o.children1.filter((id) => id.id.id !== action.id.id);
+              // children2 = children1.forEach(function (o) {
+              console.log(children1);
+              console.log(action.id.id);
+              /* var temp = 0;
+              for (var z = 0; z < children1.length; z++) {
+                if (children1[z].id === action.id.id) {
+                  temp = z;
+                  break;
+                }
+              }
+              console.log("temp", temp);
+              children1.slice(0, temp).concat(children1.slice(temp + 1));
+              console.log("children1", children1);*/
+              var index = children1.findIndex(function (o) {
+                console.log(o.id.id);
+                return o.id.id === action.id.id;
               });
+              console.log("asl", index);
+              if (index !== -1) children1.splice(index, 1);
+              /* children1 =
+                children1 &&
+                children1.filter(
+                  (id) =>
+                    //console.log("mop",id.id.id, " ", action.id.id) &&
+                    id.id.id !== action.id.id
+                );*/
+              //});
             }
             // if(children2)
 
